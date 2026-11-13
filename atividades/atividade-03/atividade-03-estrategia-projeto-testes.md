@@ -97,7 +97,9 @@ O campo de busca aceita texto livre, com infinitas possibilidades de entrada, ma
 | V4 | Termo sem correspondência | `XYZabc` | Nenhum item e mensagem informando que não há resultados para o termo |
 | I1 | Termo composto apenas por espaços | `"   "` | Tratar como campo vazio (listar todos), sem erro na tela |
 
-**Casos derivados:** CT01, CT02 e CT03.
+**Casos derivados:** CT01 e CT02.
+
+As classes V1 e V4 são exercitadas indiretamente: a listagem inicial observada no passo 1 do CT01 corresponde à classe V1 e o cenário sem resultados do CT03 corresponde à classe V4. A classe I1 (termo composto apenas por espaços) fica registrada como cobertura futura, por ter risco menor que as demais.
 
 #### Análise do integrante 1 — Técnica 2: tabela de decisão
 
@@ -118,7 +120,7 @@ O risco R02 trata da comunicação do estado da tela, que não depende do valor 
 | 3 | Sim | Sim | Não | Mensagem de ausência de resultados citando o termo e oferecendo limpar a busca |
 | 4 | Sim ou Não | Não | — | Mensagem de erro de carregamento, distinta da mensagem de ausência de resultados, com opção de tentar novamente |
 
-**Casos derivados:** CT04.
+**Casos derivados:** CT03.
 
 ---
 
@@ -174,31 +176,7 @@ A listagem exibe apenas restaurantes cuja localização é Centro; nenhum cartã
 
 ---
 
-### CT03: Busca por termo inexistente informa ausência de resultados
-
-**Integrante responsável:** Gabriel Lopes Soares
-**Funcionalidade:** Pesquisar restaurantes por especialidade ou localização
-**Risco ou requisito relacionado:** R01
-**Técnica utilizada:** Particionamento de equivalência (classe V4)
-
-**Pré-condição:**
-Usuário autenticado na tela Explorar, catálogo carregado e conexão estável.
-
-**Dados de entrada:**
-Termo de busca: `XYZabc`
-
-**Passos:**
-
-1. Digitar `XYZabc` no campo de busca.
-2. Acionar o botão "Buscar".
-3. Observar a mensagem apresentada na área da listagem.
-
-**Resultado esperado:**
-Nenhum cartão de restaurante é exibido e a tela informa que não há resultados para o termo pesquisado, sem apresentar mensagem de erro técnico.
-
----
-
-### CT04: Estado de ausência de resultados é distinto do estado de falha de carregamento
+### CT03: Ausência de resultados e falha de carregamento são comunicadas de forma distinta
 
 **Integrante responsável:** Gabriel Lopes Soares
 **Funcionalidade:** Pesquisar restaurantes por especialidade ou localização
@@ -206,26 +184,26 @@ Nenhum cartão de restaurante é exibido e a tela informa que não há resultado
 **Técnica utilizada:** Tabela de decisão (regras 3 e 4)
 
 **Pré-condição:**
-Usuário autenticado na tela Explorar; acesso às ferramentas de desenvolvedor do navegador para simular indisponibilidade da API (modo offline ou bloqueio da requisição).
+Usuário autenticado na tela Explorar, catálogo carregado e acesso às ferramentas de desenvolvedor do navegador para simular indisponibilidade da API (modo offline ou bloqueio da requisição da listagem).
 
 **Dados de entrada:**
-Termo de busca: `XYZabc` (cenário 1) e termo `Italiana` com a API bloqueada (cenário 2)
+Termo de busca: `XYZabc` no cenário sem resultados e `Italiana` no cenário com a API bloqueada.
 
 **Passos:**
 
-1. Com a conexão normal, buscar `XYZabc` e registrar a mensagem exibida.
-2. Ativar o modo offline (ou bloquear a requisição da listagem) e buscar `Italiana`.
-3. Comparar as duas mensagens observadas.
+1. Com a conexão normal, digitar `XYZabc` no campo de busca, acionar "Buscar" e observar a mensagem exibida na área da listagem.
+2. Ativar o modo offline (ou bloquear a requisição da listagem) e repetir a busca pelo termo `Italiana`.
+3. Comparar a mensagem do passo 1 com a mensagem do passo 2.
 
 **Resultado esperado:**
-As duas mensagens são distintas: no cenário 1, informa ausência de resultados para o termo; no cenário 2, informa falha de carregamento com opção de tentar novamente. Nenhum dos cenários exibe apenas um texto genérico que não permita ao usuário saber o que aconteceu.
+No passo 1, a tela informa que não há resultados para o termo pesquisado, citando o termo e sem mensagem de erro técnico. No passo 2, a tela informa falha de carregamento, com possibilidade de tentar novamente. As duas mensagens são diferentes entre si.
 
 ### 4.2 Matriz de rastreabilidade
 
 | Integrante | Funcionalidade | Risco ou requisito | Técnica utilizada | Casos de teste |
 |---|---|---|---|---|
-| Gabriel Lopes Soares | Pesquisar restaurantes por especialidade ou localização | R01 | Particionamento de equivalência | CT01, CT02 e CT03 |
-| Gabriel Lopes Soares | Pesquisar restaurantes por especialidade ou localização | R02 | Tabela de decisão | CT04 |
+| Gabriel Lopes Soares | Pesquisar restaurantes por especialidade ou localização | R01: termo de especialidade aplicado ao filtro de localização | Particionamento de equivalência | CT01 e CT02 |
+| Gabriel Lopes Soares | Pesquisar restaurantes por especialidade ou localização | R02: mensagem única para ausência de resultados e falha de carregamento | Tabela de decisão | CT03 |
 
 ---
 
