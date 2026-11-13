@@ -34,3 +34,7 @@ localeats-qualidade/
 - [Roteiro da defesa](defesa-tecnica-1/README.md) — integrante, onde estão as atividades e o que será explicado
 - [Abertura de 1 minuto](defesa-tecnica-1/roteiro-abertura-1-minuto.md) — fala cronometrada e checklist
 - [Guia de estudo](defesa-tecnica-1/guia-estudo.md) — pontos-chave das três atividades e respostas para pequenas alterações
+
+## Práticas
+
+- [Aula 11 — Testes unitários com pytest (TDD)](praticas/aula-11-testes-unitarios-tdd/README.md) — função `calcular_taxa_entrega`, testes automatizados e `relatorio-testes.txt`
