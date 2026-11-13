@@ -3,9 +3,11 @@
 ## 1. Identificação
 
 **Unidade Curricular:** Qualidade de Software
+**Turma:** ADS5N26-2C
 **Metodologia:** Problem-Based Learning (PBL)
 **Projeto:** LocalEats
 **Modalidade:** Individual
+**Equipe:** Individual (1 integrante)
 **Data:** 12/11/2026
 
 ### Integrantes
