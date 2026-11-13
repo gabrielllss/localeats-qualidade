@@ -1,0 +1,16 @@
+============================= test session starts ==============================
+platform linux -- Python 3.11.2, pytest-9.2.0, pluggy-1.7.0 -- /opt/siderclaw-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /tmp/sider-harness/data/sessions/01M79JB8MF1XA4V0ASHXZQWR8W/workspace/praticas/aula-11-testes-unitarios-tdd
+collecting ... collected 8 items
+
+tests/test_pedido.py::test_calcula_total_de_varios_itens PASSED          [ 12%]
+tests/test_pedido.py::test_retorna_zero_quando_lista_esta_vazia PASSED   [ 25%]
+tests/test_pedido.py::test_rejeita_item_com_preco_zero PASSED            [ 37%]
+tests/test_pedido.py::test_rejeita_item_com_quantidade_zero PASSED       [ 50%]
+tests/test_pedido.py::test_cobra_taxa_base_para_entrega_ate_3_km PASSED  [ 62%]
+tests/test_pedido.py::test_acrescenta_2_reais_por_km_excedente_acima_de_3_km PASSED [ 75%]
+tests/test_pedido.py::test_entrega_gratuita_para_pedidos_a_partir_de_100_reais PASSED [ 87%]
+tests/test_pedido.py::test_rejeita_distancia_negativa PASSED             [100%]
+
+============================== 8 passed in 0.02s ===============================
